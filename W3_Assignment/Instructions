@@ -1,0 +1,40 @@
+Game Setup:
+    Generate a grid of cards (minimum, 4x4) with matching pairs of images or colors or symbols.
+    Initially, all cards should be face-down.
+Game Play:
+    Allow the user to click on cards to flip them over.
+    If two flipped cards match, they should remain face-up.
+    If two flipped cards do not match, they should be flipped back face-down after a short delay.
+Game Logic:
+    Track the number of moves made by the player.
+    Determine when all pairs have been matched and display a "Game Over" message with the player's score.
+    Requirements:
+
+User Interface:
+    A visually appealing grid of cards.
+    Clear instructions and feedback to the player.
+Game Logic:
+    Correct implementation of game mechanics.
+    Accurate tracking of player moves and game state.
+JavaScript Implementation:
+    Effective use of functions for game logic, card flipping, and event handling.
+    Clean and well-structured code.
+    Use of some functional programming principles.
+    Use of ES6 syntax.
+    Use of React or similar framework is NOT allowed. 
+In your submission:
+    Point out one place in your code where you used a Functional programming concept (Anything in Chapter 11)
+    Point out one place in your code where you manipulated the DOM with Javascript.
+    Point out one place in your code where you either added listening to an event or you handled an event.
+    Point out one place in your code where you used an ES6 feature.
+
+Extra credit:
+
+Difficulty Levels: Allow players to choose from different difficulty levels (e.g., smaller/larger grids, more/fewer pairs).
+Timer: Implement a timer to track the player's time.
+Sound Effects: Add sound effects for card flips, matches, and mismatches.
+Customizable Card Styles: Allow players to customize the appearance of the cards (e.g., images, colors, themes).
+Submission:
+
+Submit the URL of the running live site.
+Submit your GitHub repo URL.
