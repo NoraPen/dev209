@@ -1,0 +1,63 @@
+* { /*Universal Selctor*/
+    background-color: aliceblue;
+}
+
+header h1 { /*Decendant; apples to h1 in header*/
+    font-style: italic;
+}
+
+li { /*Removes default style of lists*/
+    list-style: none;
+} 
+
+h1, li.first, li.second { /*Commas for multiple*/
+    font-size: x-large;
+    font-style: normal;
+}
+
+li.first { /*Only .first in li*/
+    background-color: purple;
+}
+
+.second { /*CLASS*/
+    font-family: "Courier New", Courier, monospace;
+}
+
+#listitem { /*ID*/
+    background-color: green;
+}
+
+li:nth-of-type(even) { /*even, odd, math equation: applys to only those of li list*/
+    font-size: 10px;
+}
+
+li:hover{ /*Psuedo class uses :*/
+    font-size: 40px;
+}
+
+a:visited { /*Links also: hover*/
+    color: purple;
+}
+
+/*Specificity: more specific is applied by id, then class, then type*/
+
+/*
+
+boxes
+
+position: relative = relative to previous element
+float: left or right = push to the right, wrap anything else
+margin-left: 1em; = margin 
+
+thrown off about 1 1/2 hour in
+
+
+Media Queries:
+
+changes depending on
+
+@media(min-width= ){
+    only applies if screen in at least _ pixels
+}
+
+*/
