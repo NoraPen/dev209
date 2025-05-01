@@ -1,7 +1,7 @@
 const cardImages = ['images/cow.jpg','images/elephant.jpg','images/giraffe.jpg','images/lion.jpg','images/panda.jpg','images/sheep.jpg',
     'images/tiger.jpg','images/turtle.jpg'];
 
-const doubleImages = [...cardImages, ...cardImages];
+const doubleImages = [...cardImages, ...cardImages]; // --- ... (ES6 syntax)
 
 doubleImages.sort(() => 0.5 - Math.random());
 
@@ -17,15 +17,16 @@ let matchedPairs = 0;
 
 function createBoard() {
     const cards = document.querySelectorAll(".blankCard");
-cards.forEach(card => card.remove());
-    doubleImages.sort(() => 0.5 - Math.random()); // 🔥 Shuffle cards each time you recreate the board
+    cards.forEach(card => card.remove()); // ---- .forEach (Functional Programming)
+                                         // arrow function (ES6 Syntax) 
+    doubleImages.sort(() => 0.5 - Math.random());
   
-    for (let i = 0; i < 16; i++) {
+    for (let i = 0; i < 16; i++) { // --- Create new cards using createElement and appendChild (Manipulating the DOM)
       const card = document.createElement("div");
       card.classList.add("blankCard");
       card.dataset.image = doubleImages[i];
   
-      card.addEventListener("click", function () {
+      card.addEventListener("click", function () { // --- addEventListener for clicking cards to flip them (Listening to an event)
         if (lockBoard || card === firstCard) return;
   
         card.style.backgroundImage = `url(${card.dataset.image})`;
