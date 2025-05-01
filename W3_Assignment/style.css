@@ -44,10 +44,10 @@ body {
 
 .header-bottom {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin-top: 10px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
 #restartButton {
@@ -62,4 +62,25 @@ body {
 
 #restartButton:hover {
   background-color: darkslategray;
+}
+
+.game-over {
+  margin-top: 20px;
+  padding-top: 5px;
+  text-align: center;
+  display: none;
+  background-color: aliceblue;
+  border-radius: 10px;
+  padding-bottom: 5px;
+}
+
+#gameOverMessage {
+  font-size: 28px;
+  color: green;
+  margin-bottom: 10px;
+}
+
+#finalScore {
+  font-size: 20px;
+  color: black;
 }

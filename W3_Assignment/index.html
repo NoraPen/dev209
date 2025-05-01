@@ -3,22 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Memory Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <main>
-        <section class="grid" id="grid">
-            <div class="header">
-              <h1>Memory Game</h1>
-              <div class="header-bottom">
-                <h2>Moves: 0</h2>
-                <button id="restartButton">Restart</button>
-            </div>
-            </div>
-           
-          </section>
-      
+      <section class="grid" id="grid">
+        <div class="header">
+          <h1>Memory Game</h1>
+          <div class="header-bottom">
+            <h2 id="movesCounter">Moves: 0</h2>
+            <button id="restartButton">Restart</button>
+          </div>
+          
+        </div>
+      </section>
+
+      <section class="game-over" id="gameOverSection">
+        <h2 id="gameOverMessage">Game Over!</h2>
+        <p id="finalScore">Moves: 0</p>
+      </section>
     </main>
 
 

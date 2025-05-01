@@ -13,6 +13,7 @@ let moves = 0;
 let firstCard = null;
 let secondCard = null;
 let lockBoard = false;
+let matchedPairs = 0;
 
 function createBoard() {
     const cards = document.querySelectorAll(".blankCard");
@@ -43,6 +44,13 @@ cards.forEach(card => card.remove());
             firstCard = null;
             secondCard = null;
             lockBoard = false;
+
+            matchedPairs++;
+
+            if (matchedPairs === 8) {
+                document.getElementById("gameOverSection").style.display = "block";
+                document.getElementById("finalScore").textContent = `Moves: ${moves}`;
+            }
           } else {
             // No match
             setTimeout(() => {
@@ -69,6 +77,9 @@ function restartGame() {
     lockBoard = false;
     header.textContent = `Moves: 0`;
   
+    matchedPairs = 0;
+    document.getElementById("gameOverSection").style.display = "none";
+
     createBoard();
   }
 
