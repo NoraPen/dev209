@@ -38,7 +38,7 @@ function createBoard() {
           secondCard = card;
           lockBoard = true;
           moves++;
-          header.textContent = `Moves: ${moves}`;
+          header.textContent = `Score: ${moves}`;
   
           if (firstCard.dataset.image === secondCard.dataset.image) {
             // Matched
@@ -50,7 +50,7 @@ function createBoard() {
 
             if (matchedPairs === 8) {
                 document.getElementById("gameOverSection").style.display = "block";
-                document.getElementById("finalScore").textContent = `Moves: ${moves}`;
+                document.getElementById("finalScore").textContent = `Score: ${moves}`;
             }
           } else {
             // No match
