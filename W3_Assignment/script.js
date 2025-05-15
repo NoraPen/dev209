@@ -14,23 +14,26 @@ let secondCard = null;
 let lockBoard = false;
 let matchedPairs = 0;
 
-// Assign a unique tab ID
+// Assign a unique ID per tab
 let tabId = sessionStorage.getItem("tabId");
 if (!tabId) {
   tabId = Math.random().toString(36).substr(2, 9);
   sessionStorage.setItem("tabId", tabId);
 }
 
-// Ensure move count is initialized
+// Initialize localStorage entry for this tab if needed
 if (!localStorage.getItem(`moves_${tabId}`)) {
   localStorage.setItem(`moves_${tabId}`, "0");
 }
 
+// Update this tab's move count and total across tabs
 function updateTabMoveCount() {
-  localStorage.setItem(`moves_${tabId}`, moves.toString());
+  const offset = parseInt(localStorage.getItem(`restartOffset_${tabId}`)) || 0;
+  localStorage.setItem(`moves_${tabId}`, (moves + offset).toString());
   updateTotalMovesAcrossTabs();
 }
 
+// Sum all moves across all tabs
 function updateTotalMovesAcrossTabs() {
   let total = 0;
   for (let key in localStorage) {
@@ -42,6 +45,7 @@ function updateTotalMovesAcrossTabs() {
   document.getElementById("totalMoves").textContent = `Total Moves: ${total}`;
 }
 
+// React to other tabs updating totalMoves
 window.addEventListener("storage", (e) => {
   if (e.key === "totalMoves") {
     document.getElementById("totalMoves").textContent = `Total Moves: ${e.newValue}`;
@@ -54,11 +58,12 @@ function resetTurn() {
   lockBoard = false;
 }
 
+// Only save matched cards as flipped
 function saveGameState() {
   const cards = document.querySelectorAll(".blankCard");
   const cardStates = Array.from(cards).map(card => ({
     image: card.dataset.image,
-    flipped: card.style.backgroundImage !== ""
+    flipped: card.style.backgroundImage !== "" && card.onclick === null
   }));
 
   const state = {
@@ -96,21 +101,25 @@ function handleCardClick() {
         document.getElementById("gameOverSection").style.display = "block";
         document.getElementById("finalScore").textContent = `Score: ${moves}`;
       }
+
+      saveGameState();
     } else {
       setTimeout(() => {
         firstCard.style.backgroundImage = "";
         secondCard.style.backgroundImage = "";
         resetTurn();
+        saveGameState(); // Save after flipping back
       }, 1000);
     }
   }
-
-  saveGameState();
 }
 
 function createBoard() {
   const cards = document.querySelectorAll(".blankCard");
-  cards.forEach(card => card.remove());
+  cards.forEach(card => {
+    card.removeEventListener("click", handleCardClick);
+    card.remove();
+  });
 
   doubleImages.sort(() => 0.5 - Math.random());
 
@@ -148,26 +157,28 @@ function createBoard() {
 
   updateTabMoveCount();
 }
-
 function restartGame() {
   localStorage.removeItem(`memoryGameState_${tabId}`);
-  localStorage.setItem(`moves_${tabId}`, "0");
 
+  // Get current offset and add current moves
+  const oldOffset = parseInt(localStorage.getItem(`restartOffset_${tabId}`)) || 0;
+  const newOffset = oldOffset + moves;
+  localStorage.setItem(`restartOffset_${tabId}`, newOffset.toString());
+
+  // Reset values for new game
   moves = 0;
   matchedPairs = 0;
   firstCard = null;
   secondCard = null;
   lockBoard = false;
 
-  header.textContent = `Moves: 0`;
+  header.textContent = `Score: 0`;
   document.getElementById("gameOverSection").style.display = "none";
 
-  updateTotalMovesAcrossTabs();
   createBoard();
 }
 
 restartButton.addEventListener("click", restartGame);
 
-// Initialize board
 createBoard();
 updateTotalMovesAcrossTabs();
